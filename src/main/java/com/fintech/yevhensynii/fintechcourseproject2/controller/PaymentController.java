@@ -26,6 +26,7 @@ public class PaymentController {
 
     @GetMapping("/list-payments")
     public List<PaymentDto> showAllPayment() {
+        log.info("Handling find all payments request");
         return paymentService.showAllPayments();
     }
 }

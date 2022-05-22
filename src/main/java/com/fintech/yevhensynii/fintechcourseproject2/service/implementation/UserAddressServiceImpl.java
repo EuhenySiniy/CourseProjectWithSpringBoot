@@ -28,12 +28,15 @@ public class UserAddressServiceImpl implements UserAddressService {
                 userAddressDto.getApartmentNum(),
                 userAddressDto.getUserId());
         if(addressFromDb!=null) {
-            log.info("Address is already exists");
+            log.info("Address" + addressFromDb.getAddressId() + " is already exists");
             return "Address id " + addressFromDb.getAddressId() + ", already exists";
         }
-        UserAddress savedAddress = userAddressRepository.save(userAddressConverter.fromUserAddressDtoToUserAddress(userAddressDto));
-        log.info(savedAddress.getAddressId() + " has been saved");
-        return "Address id " + savedAddress.getAddressId() + ", has been saved";
+        userAddressRepository.save(userAddressConverter.fromUserAddressDtoToUserAddress(userAddressDto));
+        log.info(userAddressDto.getCity()
+                + " " + userAddressDto.getStreet()
+                + " " + userAddressDto.getHouseNum()
+                + " has been saved");
+        return "Address has been saved";
     }
 
     @Override

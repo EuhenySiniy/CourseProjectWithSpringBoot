@@ -28,11 +28,15 @@ public class PaymentServiceImpl implements PaymentService {
             log.warn("Unable to make a payment without the amount");
             throw new ValidationException("Unable to make a payment without the amount!");
         }
+        if(paymentDto.getCardNum()==null) {
+            log.warn("Unable to make a payment without the card number");
+            throw new ValidationException("Unable to make a payment without the card number!");
+        }
         paymentDto.setStatus("New");
         paymentDto.setDateCreate(Timestamp.from(new Timestamp(System.currentTimeMillis()).toInstant()));
         paymentDto.setDateStatus(Timestamp.from(new Timestamp(System.currentTimeMillis()).toInstant()));
-        Payment savedPayment = paymentRepository.save(paymentConverter.fromPaymentDtoToPayment(paymentDto));
-        log.info(savedPayment.getPaymentId() + " payment was created");
+        paymentRepository.save(paymentConverter.fromPaymentDtoToPayment(paymentDto));
+        log.info("New payment was created");
         return "Payment was created";
     }
 
@@ -48,6 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void updateStatusPayments(Map<Long, String> updatedPayments) {
         updatedPayments.forEach((k, v) -> paymentRepository.saveNewStatusPayment(v, k));
+        log.info("Payments have been processed with status - " + updatedPayments.values());
     }
 
     @Override
@@ -57,6 +62,4 @@ public class PaymentServiceImpl implements PaymentService {
                 .map(paymentConverter::fromPaymentToPaymentDto)
                 .collect(Collectors.toList());
     }
-
-
 }

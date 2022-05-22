@@ -1,5 +1,6 @@
 package com.fintech.yevhensynii.fintechcourseproject2.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class PaymentDto {
     private long paymentId;
 

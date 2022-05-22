@@ -46,7 +46,6 @@ public class PaymentProcessingServiceImpl implements PaymentProcessingService {
                     else if(res == 2) paymentDto.setStatus(FAILED_PAYMENT);
                 }).filter(paymentDto -> paymentDto.getStatus().equals("Paid") || paymentDto.getStatus().equals("Rejected"))
                 .collect(Collectors.toMap(PaymentDto::getPaymentId, PaymentDto::getStatus));
-        System.out.println(updatedPayments);
         paymentService.updateStatusPayments(updatedPayments);
     }
 }

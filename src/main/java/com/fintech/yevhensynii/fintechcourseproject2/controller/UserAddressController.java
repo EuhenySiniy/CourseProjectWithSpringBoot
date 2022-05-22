@@ -23,6 +23,7 @@ public class UserAddressController {
 
     @GetMapping("/list-address")
     public List<UserAddressDto> showAllAddress() {
+        log.info("Handling find all address request");
         return userAddressService.findAll();
     }
 }

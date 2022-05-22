@@ -29,9 +29,9 @@ public class SampleServiceImpl implements SampleService {
             log.info("Sample is already exists");
             return "Sample id " + sampleFromDb.getSampleId() + ", already exists!";
         }
-        Sample savedSample = sampleRepository.save(sampleConverter.fromSampleDtoToSample(sampleDto));
-        log.info(savedSample.getSampleId() + " has been saved");
-        return "Sample id " + savedSample.getSampleId() + ", has been saved";
+        sampleRepository.save(sampleConverter.fromSampleDtoToSample(sampleDto));
+        log.info(sampleDto.getSampleName() + " has been saved");
+        return sampleDto.getSampleName() + " has been saved";
     }
 
     @Override

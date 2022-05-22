@@ -1,13 +1,16 @@
 package com.fintech.yevhensynii.fintechcourseproject2.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class UserDto {
     private long userId;
 

@@ -23,6 +23,7 @@ public class SampleController {
 
     @GetMapping("/list-samples")
     public List<SampleDto> showAllSamples() {
+        log.info("Handling find all samples request");
         return sampleService.findAll();
     }
 }

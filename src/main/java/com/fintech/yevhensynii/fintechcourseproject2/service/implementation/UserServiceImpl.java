@@ -27,9 +27,9 @@ public class UserServiceImpl implements UserService {
             return "User " + userDto.getEmail() + " already registered!";
         }
         userDto.setDateRegistration(Timestamp.from(new Timestamp(System.currentTimeMillis()).toInstant()));
-        User savedUser = userRepository.save(userConverter.fromUserDtoToUser(userDto));
-        log.info(savedUser.getEmail() + " has been registered");
-        return "User " + savedUser.getEmail() + " has been registered";
+        userRepository.save(userConverter.fromUserDtoToUser(userDto));
+        log.info(userDto.getEmail() + " has been registered");
+        return "User " + userDto.getEmail() + " has been registered";
     }
 
     @Override
